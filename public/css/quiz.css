@@ -1,0 +1,19 @@
+.table thead tr th:first-child {
+    padding-left: 8px !important;
+}
+
+.table tbody tr td {
+    padding-left: 8px;
+}
+
+.wysihtml5-sandbox {
+    height: 150px !important;
+}
+
+.test-result p {
+    padding: 5px 20px;
+}
+
+.test-result tr > td:first-child p {
+    font-weight: bold;
+}
