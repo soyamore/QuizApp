@@ -41,6 +41,13 @@
             </a>
             <span class="icon-thumbnail"><i class="fa fa-users"></i></span>
           </li>
+
+          <li class="m-t-5">
+            <a href="{{ URL::route('categories.index') }}">
+              <span class="title">Catégories</span>
+            </a>
+            <span class="icon-thumbnail"><i class="fa fa-tag"></i></span>
+          </li>
           @endif
 
           <li class="m-t-5">

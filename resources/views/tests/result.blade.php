@@ -15,8 +15,16 @@
         <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20 full-height">
           <div class="inner text-center p-t-50 m-t-80 full-height">
             <div class="m-b-10">
-              <h2 class=" p-t-10 inline">Vos résultas!</h2>
+              <h2 class="p-t-10 inline">Vos résultas!</h2>
             </div>
+
+
+            @if( ( ($test->score  / $test->quiz->questions->count()) * 100) > 50 )
+              <div class="m-b-10">
+                  <h1 style="font-size: 80px;color:#0da899;"><i class="fa fa-thumbs-up fa-6" aria-hidden="true"></i></h1>
+              </div>
+            @endif
+
             <div class="col-md-4 center-margin" style="float:none">
               <div class="col-md-7 b-grey b-r">
                 <p class="hinted-text text-left p-t-15 p-b-t-15">Résultat:

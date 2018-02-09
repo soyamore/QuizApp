@@ -48,14 +48,14 @@
 
                   <div class="panel-body">
                     <div class="row">
-                      <div class="col-sm-10">
+                      <div class="col-sm-6">
                         @if (isset($user))
                         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id], 'files' => true]) !!}
                         @else
                         {!! Form::open(['route' => 'users.store', 'files' => true]) !!}
                         @endif
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default form-group-default-select2 required">
                                 <label class="">Type</label>
                                 <select name="type" class="full-width" data-placeholder="Type d'utilisateur" data-init-plugin="select2">
@@ -68,7 +68,7 @@
                             </div>
                           </div>
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group form-group-default required" aria-required="true">
                                     <label>Nom complet</label>
                                     {!! Form::text("name", null, ['class' => 'form-control', 'placeholder' => 'Nom complet']) !!}
@@ -76,7 +76,7 @@
                             </div>
                           </div>
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default required" aria-required="true">
                                 <label>Login</label>
                                 {!! Form::text("username", null, ['class' => 'form-control', 'placeholder' => "Nom d'utilisateur"]) !!}
@@ -85,7 +85,7 @@
                           </div>
 
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default required" aria-required="true">
                                 <label>Email</label>
                                 {!! Form::email("email", null, ['class' => 'form-control', 'placeholder' => "Email"]) !!}
@@ -93,7 +93,7 @@
                             </div>
                           </div>
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default required" aria-required="true">
                                 <label>Mot de passe</label>
                                 {!! Form::text("password", "", ['class' => 'form-control', 'placeholder' => 'Mot de passe']) !!}
@@ -102,7 +102,7 @@
                           </div>
 
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default" aria-required="false">
                                 <label>Cin</label>
                                 {!! Form::text("cin", null, ['class' => 'form-control', 'placeholder' => "CIN"]) !!}
@@ -111,7 +111,7 @@
                           </div>
 
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default" aria-required="false">
                                 <label>Tél</label>
                                 {!! Form::text("tel", "", ['class' => 'form-control', 'placeholder' => 'N° de téléphone']) !!}
@@ -120,7 +120,7 @@
                           </div>
 
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default" aria-required="false">
                                 <label>Adresse</label>
                                 {!! Form::text("address", null, ['class' => 'form-control', 'placeholder' => "Adresse"]) !!}
@@ -129,7 +129,7 @@
                           </div>
                           
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default" aria-required="false">
                                 <label>Ville</label>
                                 {!! Form::text("ville", "", ['class' => 'form-control', 'placeholder' => 'Ville']) !!}
@@ -138,7 +138,7 @@
                           </div>
 
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default" aria-required="false">
                                 <label>Date de naissance</label>
                                 {!! Form::input("date","birthday", null, ['class' => 'form-control', 'placeholder' => "Date de naissance"]) !!}
@@ -147,7 +147,7 @@
                           </div>
 
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default form-group-default-select2">
                                 <label class="">Niveau</label>
                                 <select name="level" class="full-width" data-placeholder="Niveau" data-init-plugin="select2">
@@ -162,7 +162,7 @@
                           </div>
                           
                           <div class="row clearfix">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default" aria-required="false">
                                 <label>CV</label>
                                 {!! Form::file("cv", "", ['class' => 'form-control', 'placeholder' => 'CV']) !!}
@@ -179,6 +179,10 @@
                           {!! Form::token() !!}
 
                         {!! Form::close() !!}
+                      </div>
+
+                      <div class="col-sm-6" id="cvZone" style="min-height: 350px">
+                        
                       </div>
                     </div>
                   </div>
@@ -201,6 +205,14 @@
 
 @stop
 @section('page_scripts')
+<script src="{{ asset('/js/pdfobject.min.js') }}"></script>
+<script type="text/javascript">
+  
+  @if($user && $user->cv)
+    PDFObject.embed("{{ asset($user->cv) }}", "#cvZone");
+  @endif
+
+</script>
 <script type="text/javascript">
   $('select').select2();
 </script>

@@ -42,14 +42,6 @@
         <input type="text" name="questions[{{$i-1}}][answers][]" class="form-control" required>
       </div>
 
-      <div class="form-group">
-        <label>d.</label>
-        <span class="radio radio-success pull-right m-t-0" style="display: inline;">
-          <input type="radio" value="3" name="questions[{{$i-1}}][correct_answer]" id="{{ $i }}-d">
-          <label for="{{ $i }}-d">La réponse</label>
-        </span>
-        <input type="text" name="questions[{{$i-1}}][answers][]" class="form-control" required>
-      </div>
     </div>
   </div>
 </div>

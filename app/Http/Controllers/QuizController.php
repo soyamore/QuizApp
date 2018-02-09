@@ -116,7 +116,7 @@ class QuizController extends Controller
 
         $user = auth()->user();
 
-        $choices = ['A', 'B', 'C', 'D'];
+        $choices = ['A', 'B', 'C'];
 
         $all_questions = $quiz->questions()->orderBy('id')->get()->toArray();
 
@@ -162,41 +162,46 @@ class QuizController extends Controller
 
         foreach ($quiz->questions as $question)
         {
-            $q = $request->get('existingquestions')[$question->id];
-
-            $question->text = $q['text'];
-            $question->save();
-
-            foreach ($question->answers as $answer)
+            if(array_key_exists( $question->id,$request->get('existingquestions'))) 
             {
-                $answer->text    = $q['answers'][$answer->id];
-                $answer->correct = ($q['correct_answer'] == $answer->id);
-                $answer->save();
+                $q = $request->get('existingquestions')[$question->id];
+
+                $question->text = $q['text'];
+                $question->save();
+
+                foreach ($question->answers as $answer)
+                {
+                    $answer->text    = $q['answers'][$answer->id];
+                    $answer->correct = ($q['correct_answer'] == $answer->id);
+                    $answer->save();
+                }
             }
         }
 
-        foreach ($request->get('questions') as $q)
-        {
-            $question = $quiz->questions()->create([
-                'text' => $q['text'],
-            ]);
-
-            $answers = $q['answers'];
-
-            if ( ! array_key_exists('correct_answer', $q)) {
-                $q['correct_answer'] = 0;
-            }
-
-            foreach (range(0, 3) as $i)
+        if($request->get('questions')){
+            foreach ($request->get('questions') as $q)
             {
-                $question->answers()->create([
-                    'text'        => $answers[$i],
-                    'correct'     => ($i == $q['correct_answer']),
-                    'question_id' => $question->id,
+                $question = $quiz->questions()->create([
+                    'text' => $q['text'],
                 ]);
-            }
-        }
 
+                $answers = $q['answers'];
+
+                if ( ! array_key_exists('correct_answer', $q)) {
+                    $q['correct_answer'] = 0;
+                }
+
+                foreach (range(0, 2) as $i)
+                {
+                    $question->answers()->create([
+                        'text'        => $answers[$i],
+                        'correct'     => ($i == $q['correct_answer']),
+                        'question_id' => $question->id,
+                    ]);
+                }
+            }
+
+        }
         return redirect()->back();
     }
 

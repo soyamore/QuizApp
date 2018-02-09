@@ -46,7 +46,7 @@
                 <div class="panel-title">
                   {{ $quiz->subject }}
                 </div>
-                <p class="pull-right">Nombre de question: {{ count($questions) }} / Time: <span id="timing">{{ ( $quiz->time * count($questions) ) }}s</span></p>
+                <p class="pull-right">Nombre de question: {{ count($questions) }} / Time: <span id="timing">{{ gmdate('H:i:s', ($quiz->time * count($questions))) }}</span></p>
                 <hr>
             </div>
 
@@ -58,7 +58,7 @@
                     <h5>
 
                       <p>
-                        <b>Type: </b> {{ $quiz->category->name }}
+                        <b>Type: </b> {{ ($quiz->category) ? $quiz->category->name : 'None' }}
                       </p>
 
                       <p>
@@ -66,7 +66,7 @@
                         </p>
 
                         <p>
-                          Le Temps pour passer ce test : {{ ($quiz->time * count($questions)) }} seconds
+                          Le Temps pour passer ce test : {{ gmdate('H:i:s', ($quiz->time * count($questions))) }}
                         </p>
                     </h5>
 

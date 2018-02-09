@@ -11,6 +11,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Gears\String\Str;
 use App\User;
 use App\Http\Requests;
 
@@ -65,7 +66,7 @@ class UserController extends Controller
             $data['cv'] = 'uploads/resumes/'. $cv;
         }
 
-        dd(); die;
+        
 
         User::create($data);
 
@@ -110,26 +111,30 @@ class UserController extends Controller
         $data = $request->all();
         if($request->hasFile('cv')){
             $file = $request->file('cv');
-            $cv = time()."-".$file->getClientOriginalName();
-            $file->move('uploads/resumes', $cv);
 
-            $data['cv'] = 'uploads/resumes/'. $cv;
+            $cv = time()."-".$file->getClientOriginalName();
+            $cvName = 'uploads/resumes/'. $cv;
+            
+            $data['cv'] = $cvName;
+            $file->move('uploads/resumes', $cv);
         }
 
+        
 
         if ($request->get('password', false))
         {
-            $request->merge([
+            $data->merge([
                 'password' => bcrypt($request->get('password')),
             ]);
 
-            $user->update($request->all());
+            $user->update($data);
         }
         else
         {
-            $user->update($request->except(['password']));
+            unset($data['password']);
+            $user->update($data);
         }
-
+        
         return redirect()->route('users.index');
     }
 

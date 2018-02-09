@@ -7,6 +7,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', 'UserController');
     Route::resource('tests', 'TestController');
     Route::resource('quizzes', 'QuizController');
+    Route::resource('categories', 'CategoryController');
 
     Route::get('/quizzes/{quizzes}/delete', [
         'as' => 'quizzes.delete',

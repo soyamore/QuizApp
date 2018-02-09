@@ -20,7 +20,8 @@ class AddCandidatsInfoToUsersTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('ecole')->nullable();
             $table->string('cv')->nullable();
-            $table->integer('level_id')->nullable();
+            $table->string('level')->nullable();
+            $table->string('ville')->nullable();
         });
     }
 
@@ -39,7 +40,8 @@ class AddCandidatsInfoToUsersTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('ecole')->nullable();
             $table->string('cv')->nullable();
-            $table->integer('level_id')->nullable();
+            $table->string('level')->nullable();
+            $table->string('ville')->nullable();
         });
     }
 }
