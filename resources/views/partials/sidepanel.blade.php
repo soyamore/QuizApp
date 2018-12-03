@@ -29,7 +29,7 @@
           </li>
           <li class="m-t-5">
             <a href="{{ route('tests.examinees') }}">
-              <span class="title">Tests réalisés</span>
+              <span class="title">Tests passés</span>
             </a>
             <span class="icon-thumbnail"><i class="fa fa-navicon"></i></span>
           </li>
