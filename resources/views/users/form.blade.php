@@ -49,38 +49,41 @@
                   <div class="panel-body">
                     <div class="row">
                       <div class="col-sm-6">
-                        @if (isset($user))
+                        @if (!empty($user))
                         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id], 'files' => true]) !!}
                         @else
                         {!! Form::open(['route' => 'users.store', 'files' => true]) !!}
                         @endif
                           <div class="row clearfix">
                             <div class="col-sm-12">
+                              <h3>Informations générales</h3>
+                            </div>
+                          </div>
+                          <div class="row clearfix">
+                            <div class="col-sm-12">
                               <div class="form-group form-group-default form-group-default-select2 required">
                                 <label class="">Type</label>
                                 <select name="type" class="full-width" data-placeholder="Type d'utilisateur" data-init-plugin="select2">
                                   <option></option>
-                                  <option {{ (isset($user) && $user->type == 'candidat') ? 'selected' : '' }} value="candidat">Candidat</option>
-                                  <option {{ (isset($user) && $user->type == 'headhunter') ? 'selected' : '' }} value="HeadHunter">Head Hunter</option>
-                                  <option {{ (isset($user) && $user->type == 'admin') ? 'selected' : '' }} value="admin">Admin</option>
+                                  <option {{ (!empty($user) && $user->type == 'candidat') ? 'selected' : '' }} value="candidat">Candidat</option>
+                                  <option {{ (!empty($user) && $user->type == 'headhunter') ? 'selected' : '' }} value="HeadHunter">Head Hunter</option>
+                                  <option {{ (!empty($user) && $user->type == 'admin') ? 'selected' : '' }} value="admin">Admin</option>
                                 </select>
                               </div>
                             </div>
                           </div>
                           <div class="row clearfix">
-                            <div class="col-sm-12">
+                            <div class="col-md-6 col-sm-12">
                                 <div class="form-group form-group-default required" aria-required="true">
-                                    <label>Nom complet</label>
-                                    {!! Form::text("name", null, ['class' => 'form-control', 'placeholder' => 'Nom complet']) !!}
+                                    <label>Nom</label>
+                                    {!! Form::text("name", null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
                                 </div>
                             </div>
-                          </div>
-                          <div class="row clearfix">
-                            <div class="col-sm-12">
-                              <div class="form-group form-group-default required" aria-required="true">
-                                <label>Login</label>
-                                {!! Form::text("username", null, ['class' => 'form-control', 'placeholder' => "Nom d'utilisateur"]) !!}
-                              </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group form-group-default required" aria-required="true">
+                                    <label>Prénom</label>
+                                    {!! Form::text("firstname", null, ['class' => 'form-control', 'placeholder' => 'Prénom']) !!}
+                                </div>
                             </div>
                           </div>
 
@@ -89,14 +92,6 @@
                               <div class="form-group form-group-default required" aria-required="true">
                                 <label>Email</label>
                                 {!! Form::email("email", null, ['class' => 'form-control', 'placeholder' => "Email"]) !!}
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row clearfix">
-                            <div class="col-sm-12">
-                              <div class="form-group form-group-default required" aria-required="true">
-                                <label>Mot de passe</label>
-                                {!! Form::text("password", "", ['class' => 'form-control', 'placeholder' => 'Mot de passe']) !!}
                               </div>
                             </div>
                           </div>
@@ -152,10 +147,10 @@
                                 <label class="">Niveau</label>
                                 <select name="level" class="full-width" data-placeholder="Niveau" data-init-plugin="select2">
                                   <option></option>
-                                  <option {{ (isset($user) && $user->level == 'Débutant') ? 'selected' : '' }} value="Débutant">Débutant</option>
-                                  <option {{ (isset($user) && $user->level == 'Junior') ? 'selected' : '' }} value="Junior">Junior</option>
-                                  <option {{ (isset($user) && $user->level == 'Senior') ? 'selected' : '' }} value="Senior">Senior</option>
-                                  <option {{ (isset($user) && $user->level == 'Expert') ? 'selected' : '' }} value="Expert">Expert</option>
+                                  <option {{ (!empty($user) && $user->level == 'Débutant') ? 'selected' : '' }} value="Débutant">Débutant</option>
+                                  <option {{ (!empty($user) && $user->level == 'Junior') ? 'selected' : '' }} value="Junior">Junior</option>
+                                  <option {{ (!empty($user) && $user->level == 'Senior') ? 'selected' : '' }} value="Senior">Senior</option>
+                                  <option {{ (!empty($user) && $user->level == 'Expert') ? 'selected' : '' }} value="Expert">Expert</option>
                                 </select>
                               </div>
                             </div>
@@ -165,10 +160,38 @@
                             <div class="col-sm-12">
                               <div class="form-group form-group-default" aria-required="false">
                                 <label>CV</label>
-                                {!! Form::file("cv", "", ['class' => 'form-control', 'placeholder' => 'CV']) !!}
+                                {!! Form::file("cv", null, ['class' => 'form-control', 'placeholder' => 'CV']) !!}
                               </div>
                             </div>
                           </div>
+
+                          <hr>
+
+                          <div class="row clearfix">
+                            <div class="col-sm-12">
+                              <h3>Les informations de login</h3>
+                            </div>
+                          </div>
+                          
+                          <div class="row clearfix">
+                            <div class="col-sm-12">
+                              <div class="form-group form-group-default required" aria-required="true">
+                                <label>Login</label>
+                                {!! Form::text("username", null, ['class' => 'form-control', 'placeholder' => "Nom d'utilisateur"]) !!}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row clearfix">
+                            <div class="col-sm-12">
+                              <div class="form-group form-group-default required" aria-required="true">
+                                <label>Mot de passe</label>
+                                {!! Form::text("password", "", ['class' => 'form-control', 'placeholder' => 'Mot de passe']) !!}
+                              </div>
+                            </div>
+                          </div>
+
+                          
 
 
 
@@ -208,7 +231,7 @@
 <script src="{{ asset('/js/pdfobject.min.js') }}"></script>
 <script type="text/javascript">
   
-  @if($user && $user->cv)
+  @if(!empty($user) && !empty($user->cv))
     PDFObject.embed("{{ asset($user->cv) }}", "#cvZone");
   @endif
 

@@ -29,6 +29,16 @@
 
             <!-- START CONTAINER FLUID -->
             <div class="container-fluid container-fixed-lg">
+
+                @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+                @endif
                 <!-- START PANEL -->
                 <div class="panel panel-transparent">
                     <div class="panel-heading">
@@ -62,7 +72,7 @@
                                                         <button type="submit" class="btn btn-success">
                                                           <i class="fa fa-trash"></i>
                                                         </button>
-                                                      {!! Form::close() !!}
+                                                    {!! Form::close() !!}
                                                 </div>
                                             </td>
                                         </tr>
@@ -81,7 +91,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group form-group-default required" aria-required="true">
                                                 <label>Nouveau catégorie</label>
-                                                {!! Form::text("name", null, ['class' => 'form-control', 'placeholder' => 'Nom du catégorie']) !!}
+                                                {!! Form::text("name", null, ['class' => 'form-control', 'placeholder' => 'Nom du catégorie', 'required' => 'required']) !!}
                                             </div>
                                         </div>
                                     </div>

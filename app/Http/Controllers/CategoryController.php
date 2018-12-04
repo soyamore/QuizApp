@@ -51,9 +51,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:categories|max:255',
+        ]);
+        // Create if not exist.
         $category = Category::create($request->all());
-
+        \Session::flash('success', "Le catégorie {$name} ajouté avec success");
         if($request->ajax()){
             return json_encode($category);
         }

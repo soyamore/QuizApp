@@ -52,6 +52,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'firstname' => 'required|max:255',
+            'name' => 'required|max:255',
+            'username' => 'required|unique:users|max:255',
+            'cin' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users|max:255',
+        ]);
+
         $request->merge([
             'password' => bcrypt($request->get('password'))
         ]);
@@ -59,14 +67,12 @@ class UserController extends Controller
         $data = $request->all();
 
         if($request->hasFile('cv') && $request->file('cv')->isValid()){
-            $file = Request::file('cv');
+            $file = $request->file('cv');
             $cv = time()."-".$file->getClientOriginalName();
             $file->move('uploads/resumes', $cv);
 
             $data['cv'] = 'uploads/resumes/'. $cv;
         }
-
-        
 
         User::create($data);
 
