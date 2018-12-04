@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "soyamore/quizapp",
+    "description": "Quiz application built on laravel framework.",
+    "keywords": ["quiz", "QCM", "Assessment", "Resumes", "framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
