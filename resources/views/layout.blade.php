@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <title>Quizapp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link media="screen" type="text/css" rel="stylesheet" href="/pages/assets/plugins/nvd3/nv.d3.min.css"></link>
-    <link type="text/css" rel="stylesheet" href="/pages/assets/plugins/rickshaw/rickshaw.min.css"></link>
+    <link media="screen" type="text/css" rel="stylesheet" href="{{ 'pages/assets/plugins/nvd3/nv.d3.min.css' }}" />
+    <link type="text/css" rel="stylesheet" href="{{ 'pages/assets/plugins/rickshaw/rickshaw.min.css' }}" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">

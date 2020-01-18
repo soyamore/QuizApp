@@ -139,7 +139,7 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-        $categories = Category::lists('name','id');
+        $categories = Category::pluck('name','id');
         return view('quiz.edit', compact('quiz', 'categories'));
     }
 

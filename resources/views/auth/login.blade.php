@@ -7,10 +7,10 @@
     <meta charset="utf-8" />
     <title>Connexion - Quizapp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="apple-touch-icon" href="pages/ico/60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
+    <link rel="apple-touch-icon" href="{{ asset('pages/pages/ico/60.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('pages/pages/ico/76.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('pages/pages/ico/120.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('pages/pages/ico/152.png') }}">
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -18,11 +18,11 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
   
-    <link rel="stylesheet" type="text/css" href="{!! asset('css/bootstrap.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('pages/assets/plugins/boostrapv3/css/bootstrap.min.css') !!}">
     <link href="{!! asset('pages/pages/css/pages.min.css') !!}" rel="stylesheet" type="text/css" />
 
     <!--[if lte IE 9]>
-    <link href="pages/css/ie9.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('pages/pages/css/ie9.css') }}" rel="stylesheet" type="text/css" />
     <![endif]-->
 
     <script type="text/javascript">
@@ -56,7 +56,7 @@
                 </ul>
               </div>
               @endif
-            <form id="form-login" class="p-t-15" role="form" action="{{ URL::to('auth/login') }}" method="post" style="padding-top: 0 !important;">
+            <form id="form-login" class="p-t-15" role="form" action="{{ URL::to('login') }}" method="post" style="padding-top: 0 !important;">
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group form-group-default">
