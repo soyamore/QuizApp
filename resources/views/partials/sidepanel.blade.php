@@ -51,7 +51,7 @@
           @endif
 
           <li class="m-t-5">
-            <a href="{{ url('auth/logout') }}">
+            <a href="{{ url('logout') }}">
               <span class="title">Déconnexion</span>
             </a>
             <span class="icon-thumbnail"><i class="fa fa-sign-out"></i></span>
